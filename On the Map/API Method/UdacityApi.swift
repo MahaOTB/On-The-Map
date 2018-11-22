@@ -44,6 +44,32 @@ struct UdacityApi {
         }
     }
     
+    static func getUserData(completion: @escaping (_ neckname: String?, _ errorDescription: String?)-> Void){
+        
+        guard let userId = AppDelegateValues.getAppDelegateUniqueKey() else {
+            return
+        }
+        
+        let url = constructUdacityURL(methodName: "users/\(userId)")
+        
+        GenericMethod.getMethod(isParseAPI: false, url: url, objectType: User.self) { (user, errorDescription) in
+            
+            guard errorDescription == nil else{
+                completion(nil, "\(errorDescription!)")
+                return
+            }
+            
+            guard let user = user else{
+                completion(nil, Alerts.ServerReturnNoData)
+                return
+            }
+            
+            completion(user.user.nickname, nil)
+            
+            
+        }
+    }
+    
     static func constructUdacityURL(methodName: String) -> URL{
         
         // URL Components

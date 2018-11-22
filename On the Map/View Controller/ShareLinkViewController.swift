@@ -46,18 +46,28 @@ class ShareLinkViewController: UIViewController {
     
     @IBAction func submitCurrentLocation(_ sender: Any) {
         
-        // Post user data
-        ParseApi.postOrUpdateStudentLocation(firstName: "TEST", lastName: "TEST", latitude: Double(latitude ?? 0), longitude: Double(longitude ?? 0), mapString: mapString ?? "", mediaURL: self.mediaUrl.text) { (errorDescription) in
+        let mediaUrl = self.mediaUrl.text
+        
+        UdacityApi.getUserData { (neckname, errorDesc) in
             
-            guard errorDescription == nil else {
-                DispatchQueue.main.async {
-                    self.present(Alerts.formulateAlert(title: Alerts.ErrorHandelingRequestTitle, message: errorDescription!), animated: true)
-                }
+            guard errorDesc == nil else {
+                self.present(Alerts.formulateAlert(message: errorDesc!), animated: true)
                 return
             }
             
-            DispatchQueue.main.async {
-                self.navigationController!.popToRootViewController(animated: true)
+            // Post user data
+            ParseApi.postOrUpdateStudentLocation(firstName: neckname!, lastName: neckname!, latitude: Double(self.latitude ?? 0), longitude: Double(self.longitude ?? 0), mapString: self.mapString ?? "", mediaURL: mediaUrl ?? "") { (errorDescription) in
+                
+                guard errorDescription == nil else {
+                    DispatchQueue.main.async {
+                        self.present(Alerts.formulateAlert(title: Alerts.ErrorHandelingRequestTitle, message: errorDescription!), animated: true)
+                    }
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.navigationController!.popToRootViewController(animated: true)
+                }
             }
         }
     }

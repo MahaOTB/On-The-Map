@@ -13,6 +13,7 @@
 		102A1E38219C9CBF00E07DDC /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A1E37219C9CBF00E07DDC /* StudentLocations.swift */; };
 		103A3C66219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A3C65219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift */; };
 		103A3C68219E1BE40058FD53 /* StudentLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A3C67219E1BE40058FD53 /* StudentLocationsTableViewController.swift */; };
+		109720D821A76B5B00B0DF55 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109720D721A76B5B00B0DF55 /* UserData.swift */; };
 		10ABC03621A71096005281E5 /* StudentLocationsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ABC03521A71096005281E5 /* StudentLocationsArray.swift */; };
 		10DD82E9219F7035001FBBA9 /* ShareLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD82E8219F7035001FBBA9 /* ShareLocationViewController.swift */; };
 		10DD82EB219F7665001FBBA9 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD82EA219F7665001FBBA9 /* RoundedButton.swift */; };
@@ -39,6 +40,7 @@
 		102A1E37219C9CBF00E07DDC /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
 		103A3C65219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_MKMapViewDelegate.swift; sourceTree = "<group>"; };
 		103A3C67219E1BE40058FD53 /* StudentLocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsTableViewController.swift; sourceTree = "<group>"; };
+		109720D721A76B5B00B0DF55 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		10ABC03521A71096005281E5 /* StudentLocationsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsArray.swift; sourceTree = "<group>"; };
 		10DD82E8219F7035001FBBA9 /* ShareLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocationViewController.swift; sourceTree = "<group>"; };
 		10DD82EA219F7665001FBBA9 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				10FFBFFF219B4B94009C7905 /* Authentication.swift */,
 				10FFC001219B4C11009C7905 /* Account.swift */,
 				10FFC003219B4CF4009C7905 /* Session.swift */,
+				109720D721A76B5B00B0DF55 /* UserData.swift */,
 			);
 			path = "Udacity API Response";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				102A1E38219C9CBF00E07DDC /* StudentLocations.swift in Sources */,
 				10FFC004219B4CF4009C7905 /* Session.swift in Sources */,
 				10FFC00C219B7C23009C7905 /* AppDelegateValues.swift in Sources */,
+				109720D821A76B5B00B0DF55 /* UserData.swift in Sources */,
 				103A3C66219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift in Sources */,
 				10FFBFFC219B40BC009C7905 /* GenericMethods.swift in Sources */,
 				10FFBFE5219AF41C009C7905 /* AppDelegate.swift in Sources */,
