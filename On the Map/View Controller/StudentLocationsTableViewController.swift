@@ -30,7 +30,9 @@ class StudentLocationsTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        super.viewWillAppear(true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
         tableView.reloadData()
     }
     
@@ -48,7 +50,7 @@ class StudentLocationsTableViewController: UITableViewController {
             }
         } ))
         
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     func OverwriteLocationAlert(title: String, message: String) {
@@ -59,7 +61,7 @@ class StudentLocationsTableViewController: UITableViewController {
             self.performSegue(withIdentifier: self.showAddPinVCSegue, sender: self)
         } ))
         
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     func setUI(enabled: Bool) {
@@ -144,16 +146,16 @@ class StudentLocationsTableViewController: UITableViewController {
     // MARK: UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppDelegateValues.getAppDelegateStudentLocations()?.count ?? 0
+        return StudentLocationsArray.sharedInstance.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID)!
         
-        let studentLocations = AppDelegateValues.getAppDelegateStudentLocations()
+        let studentLocations = StudentLocationsArray.sharedInstance
         
-        if let firstName = studentLocations?[indexPath.row].firstName, let lastName = studentLocations?[indexPath.row].lastName, (!firstName.isEmpty || !lastName.isEmpty) {
+        if let firstName = studentLocations[indexPath.row].firstName, let lastName = studentLocations[indexPath.row].lastName, (!firstName.isEmpty || !lastName.isEmpty) {
             cell.textLabel?.text = "\(firstName) \(lastName)"
         }else {
             cell.textLabel?.text = noNameProvided
@@ -164,10 +166,10 @@ class StudentLocationsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let studentLocations = AppDelegateValues.getAppDelegateStudentLocations()
+        let studentLocations = StudentLocationsArray.sharedInstance
         
-        guard let mediaUrlString = studentLocations?[indexPath.row].mediaURL else {
-            self.present(Alerts.formulateAlert(message: Alerts.NoURLProvided), animated: true)
+        guard let mediaUrlString = studentLocations[indexPath.row].mediaURL else {
+            present(Alerts.formulateAlert(message: Alerts.NoURLProvided), animated: true)
             return
         }
         

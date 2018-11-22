@@ -20,7 +20,6 @@ class ShareLinkViewController: UIViewController {
     // MARK: Properties
     
     var mapString: String?
-    var locationManager: CLLocationManager!
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     
@@ -34,7 +33,9 @@ class ShareLinkViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        super.viewWillAppear(true)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,20 +63,26 @@ class ShareLinkViewController: UIViewController {
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: Functions
     
     func updateMapView() {
         
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
+        guard latitude != nil, longitude != nil else {
+            present(Alerts.formulateAlert(title: Alerts.Warning, message: Alerts.CanNotAccessLocation), animated: true)
+            return
         }
+        
+        let currentLocation = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = currentLocation
+        
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: true)
     }
     
     func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> CLLocationCoordinate2D? {
@@ -100,28 +107,5 @@ class ShareLinkViewController: UIViewController {
         coordinate = location!.coordinate
         
         return coordinate
-    }
-}
-
-// MARK: CLLocationManagerDelegate methods
-
-extension ShareLinkViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        
-        guard latitude != nil, longitude != nil else {
-            self.present(Alerts.formulateAlert(title: Alerts.Warning, message: Alerts.CanNotAccessLocation), animated: true)
-            return
-        }
-        
-        let currentLocation = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-        let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = currentLocation
-        
-        mapView.addAnnotation(annotation)
-        self.mapView.setRegion(region, animated: true)
     }
 }

@@ -13,6 +13,7 @@
 		102A1E38219C9CBF00E07DDC /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A1E37219C9CBF00E07DDC /* StudentLocations.swift */; };
 		103A3C66219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A3C65219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift */; };
 		103A3C68219E1BE40058FD53 /* StudentLocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A3C67219E1BE40058FD53 /* StudentLocationsTableViewController.swift */; };
+		10ABC03621A71096005281E5 /* StudentLocationsArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ABC03521A71096005281E5 /* StudentLocationsArray.swift */; };
 		10DD82E9219F7035001FBBA9 /* ShareLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD82E8219F7035001FBBA9 /* ShareLocationViewController.swift */; };
 		10DD82EB219F7665001FBBA9 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD82EA219F7665001FBBA9 /* RoundedButton.swift */; };
 		10DD82ED219FA17C001FBBA9 /* ShareLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DD82EC219FA17C001FBBA9 /* ShareLinkViewController.swift */; };
@@ -38,6 +39,7 @@
 		102A1E37219C9CBF00E07DDC /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
 		103A3C65219E0DE50058FD53 /* Extension_MKMapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension_MKMapViewDelegate.swift; sourceTree = "<group>"; };
 		103A3C67219E1BE40058FD53 /* StudentLocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsTableViewController.swift; sourceTree = "<group>"; };
+		10ABC03521A71096005281E5 /* StudentLocationsArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationsArray.swift; sourceTree = "<group>"; };
 		10DD82E8219F7035001FBBA9 /* ShareLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLocationViewController.swift; sourceTree = "<group>"; };
 		10DD82EA219F7665001FBBA9 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		10DD82EC219FA17C001FBBA9 /* ShareLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareLinkViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				10FFC00B219B7C23009C7905 /* AppDelegateValues.swift */,
+				10ABC03521A71096005281E5 /* StudentLocationsArray.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10ABC03621A71096005281E5 /* StudentLocationsArray.swift in Sources */,
 				10FFC007219B6753009C7905 /* Login.swift in Sources */,
 				10FFC002219B4C11009C7905 /* Account.swift in Sources */,
 				102A1E34219C908900E07DDC /* ParseApi.swift in Sources */,

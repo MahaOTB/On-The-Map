@@ -28,7 +28,6 @@ struct Alerts {
     static let NoURLProvided = "No URL provided"
     static let OverwriteLocation = "You have already posted your location. Would you want to overwrite your current location?"
     static let CanNotAccessLocation = "On The Map app can not access your current location"
-    static let NeedPermission = "Allow On The Map app to access your location"
     static let NotAuthrized = "You may entered a wrong username or password"
     static let UnableForwardGeocode = "Unable to Forward Geocode Address"
     static let NoMatchingLocation = "No Matching Location Found"

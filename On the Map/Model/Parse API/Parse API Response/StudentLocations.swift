@@ -15,7 +15,7 @@ struct StudentLocationResult: Decodable {
     
 }
 
-class StudentLocation: Codable {
+struct StudentLocation: Codable {
     
     var objectId: String?
     let uniqueKey: String?

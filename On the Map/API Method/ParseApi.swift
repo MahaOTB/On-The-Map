@@ -31,8 +31,8 @@ struct ParseApi {
                 return
             }
             
-            AppDelegateValues.removeStudentLocatiosArray()
-            AppDelegateValues.setAppDelegateVariabels(studentLocatios: studentLocationsArray.results)
+            StudentLocationsArray.sharedInstance.removeAll()
+            StudentLocationsArray.sharedInstance.append(contentsOf: studentLocationsArray.results)
             
             completionHandler(true, nil)
         }

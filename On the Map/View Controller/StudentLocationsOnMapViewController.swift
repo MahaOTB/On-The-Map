@@ -35,9 +35,11 @@ class StudentLocationsOnMapViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        super.viewWillAppear(true)
+        
+        navigationController?.setNavigationBarHidden(false, animated: true)
         removeAllAnnotations()
-        updateMapView()
+        getStudentLocations()
     }
     
     // MARK: Actions
@@ -49,7 +51,7 @@ class StudentLocationsOnMapViewController: UIViewController {
         setUI(enabled: false)
         
         guard AppDelegateValues.getAppDelegateObjectId() == nil else {
-            OverwriteLocationAlert(title: Alerts.Warning, message: Alerts.OverwriteLocation)
+            overwriteLocationAlert(title: Alerts.Warning, message: Alerts.OverwriteLocation)
             setUI(enabled: true)
             return
         }
@@ -73,7 +75,7 @@ class StudentLocationsOnMapViewController: UIViewController {
             
             // else show alert ask him to overwrite his previouse location
             DispatchQueue.main.async {
-                self.OverwriteLocationAlert(title: Alerts.Warning, message: Alerts.OverwriteLocation)
+                self.overwriteLocationAlert(title: Alerts.Warning, message: Alerts.OverwriteLocation)
             }
             self.setUI(enabled: true)
         }
@@ -124,7 +126,7 @@ class StudentLocationsOnMapViewController: UIViewController {
         
         var annotations = [MKPointAnnotation]()
         
-        for studentLocation in AppDelegateValues.getAppDelegateStudentLocations() ?? [] {
+        for studentLocation in StudentLocationsArray.sharedInstance  {
             
             guard let latitude = studentLocation.latitude, let longiture = studentLocation.longitude else{
                 continue
@@ -140,13 +142,13 @@ class StudentLocationsOnMapViewController: UIViewController {
             if let first = studentLocation.firstName ,let last = studentLocation.lastName, !first.isEmpty, !last.isEmpty {
                 annotation.title = "\(first) \(last)"
             }else {
-                annotation.title = self.noNameProvided
+                annotation.title = noNameProvided
             }
             
             if let mediaURL = studentLocation.mediaURL, !mediaURL.isEmpty {
                 annotation.subtitle = mediaURL
             }else {
-                annotation.subtitle = self.noUrlProvided
+                annotation.subtitle = noUrlProvided
             }
             
             annotation.coordinate = coordinate
@@ -154,10 +156,10 @@ class StudentLocationsOnMapViewController: UIViewController {
             annotations.append(annotation)
         }
         
-        self.mapView.addAnnotations(annotations)
+        mapView.addAnnotations(annotations)
     }
     
-    func OverwriteLocationAlert(title: String, message: String) {
+    func overwriteLocationAlert(title: String, message: String) {
         
         let alert = Alerts.formulateAlert(title: title, message: message)
         
@@ -165,23 +167,12 @@ class StudentLocationsOnMapViewController: UIViewController {
             self.performSegue(withIdentifier: self.showAddPinVCSegue, sender: self)
         } ))
         
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     func setUI(enabled: Bool) {
         barbiPinIcon.isEnabled = enabled
         barbiLogout.isEnabled = enabled
-    }
-    
-    func updateMapView() {
-        
-        if (CLLocationManager.locationServicesEnabled())
-        {
-            locationManager = CLLocationManager()
-            locationManager!.delegate = self
-            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager!.startUpdatingLocation()
-        }
     }
     
     func removeAllAnnotations() {
@@ -204,6 +195,6 @@ class StudentLocationsOnMapViewController: UIViewController {
 extension StudentLocationsOnMapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        getStudentLocations()
+        
     }
 }

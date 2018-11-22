@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         setUI(enabled: true)
         tfUsername.text?.removeAll()
         tfPassword.text?.removeAll()
@@ -56,8 +58,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.performSegue(withIdentifier: self.segue, sender: self)
-            
+            self.performSegue(withIdentifier: self.segue, sender: self)  
         }
     }
     

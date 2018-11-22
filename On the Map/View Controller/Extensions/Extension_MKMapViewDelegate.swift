@@ -38,13 +38,13 @@ extension StudentLocationsOnMapViewController: MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             
             guard let urlString = view.annotation?.subtitle else {
-                self.present(Alerts.formulateAlert(message: Alerts.NoURLProvided), animated: true)
+                present(Alerts.formulateAlert(message: Alerts.NoURLProvided), animated: true)
                 return
             }
             
             let error = ParseApi.openUrl(urlString: urlString!)
             guard error == nil else {
-                self.present(Alerts.formulateAlert(message: error!), animated: true)
+                present(Alerts.formulateAlert(message: error!), animated: true)
                 return
             }
         }

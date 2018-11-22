@@ -23,14 +23,6 @@ struct AppDelegateValues {
         appDelegate?.objectId = objectId
     }
     
-    static func setAppDelegateVariabels(studentLocatios: [StudentLocation]) {
-        appDelegate?.listOfStudentLocations.append(contentsOf: studentLocatios)
-    }
-    
-    static func removeStudentLocatiosArray() {
-        appDelegate?.listOfStudentLocations.removeAll()
-    }
-    
     // Get values
     
     static func getAppDelegateUniqueKey() -> String? {
@@ -39,10 +31,6 @@ struct AppDelegateValues {
     
     static func getAppDelegateObjectId() -> String? {
         return appDelegate?.objectId
-    }
-    
-    static func getAppDelegateStudentLocations () -> [StudentLocation]? {
-        return appDelegate?.listOfStudentLocations
     }
     
 }

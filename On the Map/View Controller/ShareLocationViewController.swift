@@ -19,7 +19,6 @@ class ShareLocationViewController: UIViewController {
     // MARK: Properties
     
     let shareLinkViewControllerSegue = "ShareLinkViewControllerSegue"
-    var locationManager = CLLocationManager()
     var geocoder = CLGeocoder()
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
@@ -33,7 +32,9 @@ class ShareLocationViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        super.viewWillAppear(true)
+        
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: Actions
@@ -44,20 +45,8 @@ class ShareLocationViewController: UIViewController {
     
     @IBAction func findMeOnTheMap(_ sender: Any) {
         
-        let status = CLLocationManager.authorizationStatus()
-        locationManager.delegate = self
-        
-        if status == .notDetermined {
-            locationManager.requestWhenInUseAuthorization()
-            
-        } else if status == .authorizedWhenInUse || status == .authorizedAlways {
-            activityIndicator.startAnimating()
-            forwardGeocodes()
-            
-        } else {
-            self.present(Alerts.formulateAlert(title: Alerts.Warning, message: Alerts.NeedPermission), animated: true)
-        }
-        
+        activityIndicator.startAnimating()
+        forwardGeocodes()
     }
     
     // MARK: Functions
@@ -84,12 +73,11 @@ class ShareLocationViewController: UIViewController {
             
             coordinate = self.processResponse(withPlacemarks: placemarks, error: error)
             
+            self.activityIndicator.stopAnimating()
+            
             guard coordinate != nil else {
-                self.activityIndicator.stopAnimating()
                 return
             }
-            
-            self.activityIndicator.stopAnimating()
             
             self.latitude = coordinate?.latitude
             self.longitude = coordinate?.longitude
@@ -122,17 +110,3 @@ class ShareLocationViewController: UIViewController {
         return coordinate
     }
 }
-
-// MARK: CLLocationManagerDelegate methods
-
-extension ShareLocationViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
-        
-        if (CLLocationManager.authorizationStatus() == .authorizedWhenInUse || CLLocationManager.authorizationStatus() == .authorizedAlways) {
-            
-            performSegue(withIdentifier: shareLinkViewControllerSegue, sender: self)
-        }
-    }
-}
-
