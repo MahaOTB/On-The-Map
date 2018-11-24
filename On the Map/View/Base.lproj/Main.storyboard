@@ -386,7 +386,6 @@
                     <connections>
                         <outlet property="barbiLogout" destination="7aJ-MC-uNr" id="RPi-ch-QI9"/>
                         <outlet property="barbiPinIcon" destination="Qw7-a5-nTr" id="k2V-SA-4r5"/>
-                        <outlet property="tvStudentLocations" destination="6vg-CJ-uvM" id="7Cf-wz-Grf"/>
                         <segue destination="9RT-Hj-X9K" kind="show" identifier="showAddPinViewController" id="pJY-TC-YcQ"/>
                     </connections>
                 </tableViewController>

@@ -12,7 +12,6 @@ class StudentLocationsTableViewController: UITableViewController {
     
     // MARK: Outlet
     
-    @IBOutlet weak var tvStudentLocations: UITableView!
     @IBOutlet weak var barbiPinIcon: UIBarButtonItem!
     @IBOutlet weak var barbiLogout: UIBarButtonItem!
     
@@ -146,6 +145,11 @@ class StudentLocationsTableViewController: UITableViewController {
     // MARK: UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if StudentLocationsArray.sharedInstance.count == 0 {
+            self.tableView.setEmptyMessage("No Loaded Data")
+        }else {
+            self.tableView.restore()
+        }
         return StudentLocationsArray.sharedInstance.count
     }
     
